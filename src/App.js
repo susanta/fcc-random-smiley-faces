@@ -1,35 +1,26 @@
 import React from 'react';
+import { range } from 'd3';
+import { Face } from './components/Face';
 
-import { BackgroundCircle } from './components/BackgroundCircle';
-import { Eyes } from './components/Eyes';
-import { Mouth } from './components/Mouth';
+const width = 160;
+const height = 160;
 
-const width = 960;
-const height = 500;
-const centerX = width / 2;
-const centerY = height / 2;
-const strokeWidth = 10;
-const eyeOffsetX = 90;
-const eyeOffsetY = 90;
-const eyeRedious = 40;
-const mouthWidth = 20;
-const mouthRadius = 110;
+const array = range(5 * 6);
 
-const App = () => (
-  <svg width={width} height={height}>
-    <g transform={`translate(${centerX}, ${centerY})`}>
-      <BackgroundCircle
-        radius={centerY - strokeWidth / 2}
-        strokeWidth={strokeWidth}
-      />
-      <Eyes
-        eyeOffsetX={eyeOffsetX}
-        eyeOffsetY={eyeOffsetY}
-        eyeRedious={eyeRedious}
-      />
-      <Mouth mouthRadius={mouthRadius} mouthWidth={mouthWidth} />
-    </g>
-  </svg>
-);
+const App = () =>
+  array.map(() => (
+    <Face
+      width={width}
+      height={height}
+      centerX={width / 2}
+      centerY={height / 2}
+      strokeWidth={5 + Math.random() * 5}
+      eyeOffsetX={20 + Math.random() * 5}
+      eyeOffsetY={20 + Math.random() * 7}
+      eyeRedious={5 + Math.random() * 10}
+      mouthWidth={10 + Math.random() * 10}
+      mouthRadius={30 + Math.random() * 10}
+    />
+  ));
 
 export default App;
